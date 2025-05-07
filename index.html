@@ -43,9 +43,10 @@
 
 
 .logo img {
-  width: 100%;
+  width: 50%;
   max-width: 200px;
-  height: auto;
+  height: 100%;
+  max-height: 800px;
   display: block;
   margin: 0 auto 2rem;
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.2)); /* diskret guld-glow */
@@ -151,12 +152,15 @@ nav a:hover {
        padding: 2rem 0;
        color: var(--color-muted);
      }
+     html {
+  scroll-behavior: smooth;
+}
    </style>
  </head>
  <body>
    <header>
      <div class="container">
-       <h1 class="logo"><img src="skarmavbild.png" alt="Solidum logotyp" style="height: 80px;" />
+       <h1 class="logo"><img src="skarmavbild.png" alt="Solidum logotyp" style="height: 100px;" />
       </h1>
        <nav>
          <ul>
@@ -179,8 +183,8 @@ nav a:hover {
      <section id="contact" class="section">
        <h2>Kontakt</h2>
        <ul>
-         <li>Email: <a href="mailto:joar.flood0@gmail.com">joar.flood0@gmail.com</a></li>
-         <li>Telefon: <a href="tel:+46762734307">+46 76 273 43 07</a></li>
+         <li>Email: <a href="mailto:infosolidum@gmail.com">infosolidum@gmail.com</a></li>
+         <li>Telefon: <a href="tel:+46762734307 / +46767769848">+46 76 273 43 07 / +46 76 776 98 48</a></li>
        </ul>
      </section>
 
@@ -212,12 +216,12 @@ nav a:hover {
 
    <script>
    
-emailjs.init("xMAXP3Xz-KK5IIGQt");
+emailjs.init("LkHxZi3WP7QZPevZP");
 
 document.getElementById("booking-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  emailjs.sendForm("service_fx6ik14", "template_v1pp2yj", this)
+  emailjs.sendForm("service_1158xbc", "template_pcn5yqc", this)
     .then(() => {
       const msg = document.getElementById("confirmation-message");
       msg.textContent = "Tack för din bokning! Vi kontaktar dig inom kort.";
