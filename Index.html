@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="sv">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Solidum - Tak och Fasadtvätt för dig</title>
+   <style>
+     :root {
+       --color-bg:#253741;
+       --color-section: #141320;
+       --color-primary: #e7e7e7;
+       --color-text: #f1f5f9;
+       --color-muted: #94a3b8;
+       --color-input: #334155;
+       --radius: 12px;
+       --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+     }
+
+
+     body {
+       font-family: 'Segoe UI', sans-serif;
+       background-color: var(--color-bg);
+       color: var(--color-text);
+       margin: 0;
+       padding: 0;
+       line-height: 1.6;
+     }
+
+
+     .container {
+       width: 90%;
+       max-width: 960px;
+       margin: 0 auto;
+     }
+
+
+     header {
+  background: linear-gradient(135deg, #0a0f1c, #1f2937);
+  padding: 4rem 0 2rem;
+  text-align: center;
+}
+
+
+
+.logo img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 2rem;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.2)); /* diskret guld-glow */
+}
+
+
+     nav ul {
+       list-style: none;
+       display: flex;
+       justify-content: center;
+       gap: 2rem;
+       padding: 0;
+       margin-top: 1rem;
+     }
+
+
+     nav a {
+  color: #f1f5f9;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.05rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #facc15; /* Guldton vid hover */
+}
+
+
+
+     nav a:hover {
+       color: var(--color-primary);
+     }
+
+
+     main {
+       padding: 3rem 0;
+     }
+
+
+     .section {
+       background-color: var(--color-section);
+       padding: 2rem;
+       border-radius: var(--radius);
+       box-shadow: var(--shadow);
+       margin-bottom: 2rem;
+     }
+
+
+     .section h2 {
+       color: var(--color-text);
+       margin-bottom: 1rem;
+     }
+
+
+     form {
+       display: flex;
+       flex-direction: column;
+       gap: 1rem;
+     }
+
+
+     input,
+     textarea {
+       background-color: var(--color-input);
+       color: var(--color-text);
+       border: none;
+       padding: 0.9rem 1rem;
+       font-size: 1rem;
+       border-radius: var(--radius);
+     }
+
+
+     button {
+       background-color: var(--color-primary);
+       color: #fff;
+       padding: 0.9rem 1rem;
+       font-weight: bold;
+       border: none;
+       border-radius: var(--radius);
+       cursor: pointer;
+       transition: background-color 0.3s;
+     }
+
+
+     button:hover {
+       background-color: #1d4ed8;
+     }
+
+
+     #confirmation-message {
+       margin-top: 1rem;
+       color: var(--color-primary);
+       font-weight: 600;
+       display: none;
+     }
+
+
+     footer {
+       background-color: var(--color-section);
+       text-align: center;
+       padding: 2rem 0;
+       color: var(--color-muted);
+     }
+   </style>
+ </head>
+ <body>
+   <header>
+     <div class="container">
+       <h1 class="logo"><img src="skärmavbild.png" alt="Solidum logotyp" style="height: 80px;" />
+      </h1>
+       <nav>
+         <ul>
+           <li><a href="#about">Om Oss</a></li>
+           <li><a href="#contact">Kontakt</a></li>
+           <li><a href="#booking">Boka Möte</a></li>
+         </ul>
+       </nav>
+     </div>
+   </header>
+
+
+   <main class="container">
+     <section id="about" class="section">
+       <h2>Om Oss</h2>
+       <p> </p>
+     </section>
+
+
+     <section id="contact" class="section">
+       <h2>Kontakt</h2>
+       <ul>
+         <li>Email: <a href="mailto:joar.flood0@gmail.com">joar.flood0@gmail.com</a></li>
+         <li>Telefon: <a href="tel:+46762734307">+46 76 273 43 07</a></li>
+       </ul>
+     </section>
+
+
+     <section id="booking" class="section">
+       <h2>Boka Möte</h2>
+       <form id="booking-form">
+         <input type="text" name="user_name" placeholder="Ditt namn" required />
+         <input type="email" name="user_email" placeholder="Din e-post" required />
+         <input type="date" name="booking_date" required />
+         <textarea name="message" placeholder="Meddelande (valfritt)"></textarea>
+         <button type="submit">Skicka bokning</button>
+       </form>
+       <p id="confirmation-message" style="margin-top: 1rem; color: #ffffff; display: none;"></p>
+     </section>
+    
+     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+     <script src="script.js"></script>
+    
+    
+   </main>
+
+
+   <footer>
+     <p>&copy; 2025 Solidum. Alla rättigheter förbehållna.</p>
+   </footer>
+
+
+   <script>
+   
+emailjs.init("xMAXP3Xz-KK5IIGQt");
+
+document.getElementById("booking-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  emailjs.sendForm("service_fx6ik14", "template_v1pp2yj", this)
+    .then(() => {
+      const msg = document.getElementById("confirmation-message");
+      msg.textContent = "Tack för din bokning! Vi kontaktar dig inom kort.";
+      msg.style.display = "block";
+      msg.style.color = "#ffffff";
+      e.target.reset();
+    })
+    .catch((error) => {
+      const msg = document.getElementById("confirmation-message");
+      msg.textContent = "Ett fel uppstod. Försök igen.";
+      msg.style.display = "block";
+      msg.style.color = "red";
+      console.error("EmailJS Error:", error);
+    });
+});
+
+   </script>
+ </body>
+</html>
